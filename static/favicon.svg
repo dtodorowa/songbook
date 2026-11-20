@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .bg { fill: #0F0F12; }
+      .ring { fill: none; stroke: #27272A; stroke-width: 3; }
+      .label { fill: #18181B; }
+      .t { fill: #F2F2F2; font-family: Georgia, 'Times New Roman', serif; font-size: 42px; font-style: italic; font-weight: 600; }
+      .dot { fill: #F2F2F2; }
+    </style>
+  </defs>
+  <circle class="bg" cx="50" cy="50" r="50"/>
+  <circle class="ring" cx="50" cy="50" r="42"/>
+  <circle class="ring" cx="50" cy="50" r="32"/>
+  <circle class="label" cx="50" cy="50" r="18"/>
+  <text class="t" x="50" y="62" text-anchor="middle">t</text>
+  <circle class="dot" cx="50" cy="50" r="2.5"/>
+</svg>

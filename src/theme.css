@@ -1,0 +1,246 @@
+@custom-variant dark (&:is(.dark *));
+
+/* Monochrome.
+   ------------------------------------------------------------------
+   The shell is pure greyscale: page, cards, borders, ink and the selection accent
+   all sit at zero saturation, so the only colour in the room belongs to the data
+   (orchestra dots, genre marks, set identities, album art). That is the whole
+   idea, and it is why the neutrals below carry no hue at all rather than a small
+   tint.
+
+   The greys are also a *ladder*, not a wash. Light runs page 96 -> card 100 with
+   an 83% border; dark runs page 7 -> card 12 with a 21% border. Cards separate
+   from the page by a real step plus a border you can see, which is what the old
+   93/100/90 arrangement never managed.
+
+   Every value here was measured against this mode's own surface rather than
+   flipped from the other's. Contrast notes stay on the lines that earned them. */
+
+:root {
+  --background: 0 0% 96%;
+  --foreground: 0 0% 6%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 6%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 6%;
+
+  --primary: 0 0% 6%;
+  --primary-foreground: 0 0% 96%;
+
+  --secondary: 0 0% 93%;
+  --secondary-foreground: 0 0% 6%;
+
+  --muted: 0 0% 93%;
+  --muted-foreground: 0 0% 32%; /* body copy: solid, not the washed-out 45% */
+
+  --accent: 0 0% 93%;
+  --accent-foreground: 0 0% 6%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 0 0% 83%; /* dark enough that a card edge holds without a shadow */
+  --input: 0 0% 83%;
+  --ring: 0 0% 6%;
+
+  --radius: 0.75rem;
+
+  /* Custom tokens from landing.html */
+  --ink: 0 0% 6%;
+  --ink-muted: 0 0% 32%;
+  --ink-faint: 0 0% 46%;
+  --surface: 0 0% 96%;
+  /* The colour a full page shell paints. Same value as --surface, but a token of
+     its own so a future full-page treatment can move every page from one place
+     without dragging cards, inputs and sticky headers along. */
+  --page: 0 0% 96%;
+
+  /* Categorical marks (orchestra dots, concept cards). OKLCH, not HSL, so the
+     perceived lightness stays flat around the hue wheel instead of swinging from
+     glaring yellow-green to muddy blue. Chroma runs higher here than a tinted
+     theme would want: against a grey shell these marks are the only colour on
+     screen, so they can afford it. Validated for this mode's surface: inside the
+     light band (0.43-0.77), above the chroma floor, past 3:1. */
+  --cat-l: 0.56;
+  --cat-c: 0.17;
+
+  /* Selection. Historically "accent-purple", and the name is kept because it is
+     spelled across the whole app; under Monochrome the colour is ink. A selected
+     thing reads as a black outline or fill, which is exactly the point: nothing
+     in the chrome competes with the data. */
+  --accent-purple: 0 0% 10%;
+  --accent-mint: 151 24% 62%;
+
+  /* Brand: where the page invites you in (the big play buttons, section eyebrows,
+     the sidebar's icons). Ink, like selection, so the chrome stays black and white
+     and the only colour on screen is the data and the photos. */
+  --brand: 0 0% 10%;
+  --brand-foreground: 0 0% 100%;
+
+  /* The shell's canvas: what shows in the gaps between the islands (rail, page,
+     player drawer) and under the docked player bar. */
+  --canvas: 0 0% 90%;
+
+  /* Now playing. Ink, like selection: the bouncing equalizer carries the signal, so
+     the colour doesn't have to. Kept as its own token so it can take a hue later. */
+  --playing: 0 0% 10%;
+
+  /* Genre colours: the production trio, purple, sage mint and orange. They separate
+     best of anything tried (worst colourblind pair 13.4 deltaE). Muted greys and a
+     grey tango were tried and read as mud on the monochrome shell. Purple tango no
+     longer collides with selection, because selection is ink now.
+
+     They do NOT pass as text in light mode: GenreBadge renders `text-{genre}` on a
+     /10 wash, and vals measures 1.78:1 and milonga 2.46:1 against a 4.5 bar. These
+     stepped values clear AA at the same hues if that becomes the priority:
+       --vals: 151 34% 31%;   (4.6:1)
+       --milonga: 28 82% 36%; (4.7:1) */
+  --tango: 268 35% 48%;
+  --milonga: 28 78% 55%;
+  --vals: 151 27% 68%;
+
+  /* Compare/set identity palette — one colour per selected set. These are solid
+     fills that carry WHITE text (tokens, numbered avatars, share bars), so they
+     must clear AA against white (~4.5:1) as well as read apart from each other.
+     Those two pull opposite ways, which is what caps this palette: see the note
+     in docs/categorical-colour.md.
+
+     Stepped in OKLCH at varied lightness, so identity doesn't rest on hue alone.
+     Every adjacent check passes on this mode's surface. White-on-fill measures
+     5.00 / 6.63 / 5.08 / 8.04 / 4.20 / 7.37 — slot 5 is the one miss, and it is
+     out of reach of the white-text callers (compare caps at four).
+
+     Still the shipped palette: the shell went monochrome first, and which data
+     colours sit on it is a separate open decision. See
+     docs/data-palette-options.md. */
+  --set-1: 107 61% 31%; /* green */
+  --set-2: 211 85% 37%; /* blue */
+  --set-3: 30 100% 34%; /* orange */
+  --set-4: 289 46% 36%; /* magenta */
+  --set-5: 187 100% 30%; /* aqua */
+  --set-6: 0 56% 40%; /* red */
+
+  /* Sidebar (shadcn convention) */
+  --sidebar: 0 0% 98%;
+  --sidebar-foreground: 0 0% 6%;
+  --sidebar-primary: 0 0% 6%;
+  --sidebar-primary-foreground: 0 0% 96%;
+  --sidebar-accent: 0 0% 93%;
+  --sidebar-accent-foreground: 0 0% 6%;
+  --sidebar-border: 0 0% 83%;
+  --sidebar-ring: 0 0% 6%;
+
+  /* Chart colors */
+  --chart-1: 0 91% 71%;
+  --chart-2: 213 94% 68%;
+  --chart-3: 142 71% 73%;
+  --chart-4: 38 92% 50%;
+  --chart-5: 262 83% 58%;
+
+  /* Footer tokens (light mode: dark ink footer) */
+  --footer-bg: 0 0% 6%;
+  --footer-fg: 0 0% 96%;
+  --footer-muted: 0 0% 96%;
+  --footer-muted-opacity: 0.75;
+  --footer-faint: 0 0% 96%;
+  --footer-faint-opacity: 0.55;
+  --footer-border: 0 0% 96%;
+  --footer-border-opacity: 0.1;
+}
+
+.dark {
+  --background: 0 0% 7%;
+  --foreground: 0 0% 98%;
+
+  --card: 0 0% 12%;
+  --card-foreground: 0 0% 98%;
+
+  --popover: 0 0% 12%;
+  --popover-foreground: 0 0% 98%;
+
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 7%;
+
+  --secondary: 0 0% 18%;
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 0 0% 18%;
+  --muted-foreground: 0 0% 78%; /* brightened for legible body copy */
+
+  --accent: 0 0% 18%;
+  --accent-foreground: 0 0% 98%;
+
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 0 0% 21%;
+  --input: 0 0% 21%;
+  --ring: 0 0% 83%;
+
+  /* Custom tokens dark */
+  --ink: 0 0% 98%;
+  --ink-muted: 0 0% 78%;
+  --ink-faint: 0 0% 62%;
+  --surface: 0 0% 7%;
+  --page: 0 0% 7%;
+
+  /* Stepped for the dark surface, not flipped from light: lighter, same chroma. */
+  --cat-l: 0.7;
+  --cat-c: 0.17;
+
+  /* Selection is ink here too, which on a near-black page means near-white. */
+  --accent-purple: 0 0% 96%;
+  --accent-mint: 151 26% 54%;
+
+  /* Near-white on the near-black page; dark text on the fill. */
+  --brand: 0 0% 96%;
+  --brand-foreground: 0 0% 6%;
+
+  --canvas: 0 0% 0%;
+
+  --playing: 0 0% 96%;
+
+  /* Same production trio. Dark mode needs no adjustment: tango/milonga/vals measure
+     5.00 / 6.99 / 6.73 as text here, all clear. */
+  --tango: 268 35% 60%;
+  --milonga: 28 78% 55%;
+  --vals: 151 30% 52%;
+
+  /* Same six, stepped for the dark surface: lifted just enough to clear 3:1 on the
+     page without dropping white-on-fill below AA. All adjacent checks pass. */
+  --set-1: 108 58% 32%; /* green */
+  --set-2: 212 66% 47%; /* blue */
+  --set-3: 30 100% 35%; /* orange */
+  --set-4: 289 37% 46%; /* magenta */
+  --set-5: 187 100% 33%; /* aqua */
+  --set-6: 2 48% 48%; /* red */
+
+  /* Sidebar */
+  --sidebar: 0 0% 9%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-primary: 0 0% 98%;
+  --sidebar-primary-foreground: 0 0% 9%;
+  --sidebar-accent: 0 0% 18%;
+  --sidebar-accent-foreground: 0 0% 98%;
+  --sidebar-border: 0 0% 21%;
+  --sidebar-ring: 0 0% 83%;
+
+  /* Chart colors */
+  --chart-1: 0 91% 65%;
+  --chart-2: 213 94% 62%;
+  --chart-3: 142 71% 55%;
+  --chart-4: 38 92% 50%;
+  --chart-5: 262 83% 58%;
+
+  /* Footer tokens (dark mode: elevated card surface) */
+  --footer-bg: 0 0% 12%;
+  --footer-fg: 0 0% 98%;
+  --footer-muted: 0 0% 78%;
+  --footer-muted-opacity: 1;
+  --footer-faint: 0 0% 78%;
+  --footer-faint-opacity: 0.7;
+  --footer-border: 0 0% 21%;
+  --footer-border-opacity: 1;
+}
