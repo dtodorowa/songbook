@@ -2,10 +2,9 @@
 
 A music library that lives in your browser. Save songs as YouTube links, add their lyrics, tap the lyrics in time once, and from then on they follow the video so you can sing along. Each song also keeps notes on how to play it: key, capo, tempo, chords.
 
-There is no server and no account. Songs are stored in the browser's IndexedDB, so they stay on the machine you added them on. The Backup page saves them to a JSON file and restores from one.
+Quick demo. There is no server and no account. Songs are stored in the browser's IndexedDB, so they stay on the machine you added them on. The Backup page saves them to a JSON file and restores from one.
 
-
-<img width="1467" height="873" alt="image" src="https://github.com/user-attachments/assets/5998d071-2143-4d01-b484-7f01ecde4a03" />
+<img width="1464" height="604" alt="image" src="https://github.com/user-attachments/assets/741471e2-33ea-4509-9c79-b37d6c026873" />
 
 ## What it does
 
